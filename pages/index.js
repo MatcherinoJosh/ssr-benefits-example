@@ -46,6 +46,14 @@ export default function Home({ randomNum }) {
           readOnly
           value={largeComponentData.substring(0, 1000)}
         ></textarea>
+        <button
+          onClick={() => {
+            alert("I'm some JS that can only run when hydrated!");
+          }}
+        >
+          Click this button! I&apos;ll do nothing while the page isn&apos;t
+          hydrated.
+        </button>
       </main>
     </>
   );

@@ -1,17 +1,10 @@
 import Head from "next/head";
+import Link from "next/link";
 import { useState, useEffect } from "react";
 import { largeComponentData } from "../src/largeComponent";
-import Link from "next/link";
 
-export const getServerSideProps = async (ctx) => {
-  return {
-    props: {
-      randomNum: Math.floor(Math.random() * 1_000_000),
-    },
-  };
-};
-
-export default function Home({ randomNum }) {
+export default function Home() {
+  const [randomNum] = useState(Math.floor(Math.random() * 1_000_000));
   const [info, setInfo] = useState(`Hydrating (lucky number: ${randomNum})`);
 
   const numAs = largeComponentData.split("").filter((x) => x === "a").length;
@@ -38,9 +31,7 @@ export default function Home({ randomNum }) {
           In this case, the expensive computation was computing the number of As
           and the length of some really large data.
         </p>
-        <Link href="/spa">
-          Click to compare this to what an SPA would be like
-        </Link>
+        <Link href="/">Click to compare this to what SSR would be like</Link>
         <p>Hell, you can even see a preview of that data for free:</p>
         <textarea
           readOnly
